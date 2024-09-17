@@ -18,3 +18,4 @@ jobs:
 
             - name: Finish assignment
               run: gcloud builds submit
+              continue-on-error: true
