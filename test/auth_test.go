@@ -16,12 +16,12 @@ func TestAuth(t *testing.T) {
 	}{
 		{name: "Correct syntax", input: "ApiKey 1234", want: "1234", expectedErr: nil},
 		{name: "Missing ApiKey", input: "1234", want: "",
-		 expectedErr: errors.New("malformed authorization header")},
+			expectedErr: errors.New("malformed authorization header")},
 	}
 
 	for _, testCase := range tests {
 		got, err := auth.GetAPIKey(http.Header{"Authorization": {testCase.input}})
-		if got != testCase.want  {
+		if got != testCase.want {
 			t.Errorf("GetAPIKey(%s) = %s, want %s ",
 				testCase.input, got, testCase.want)
 		}

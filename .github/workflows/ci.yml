@@ -1,9 +1,7 @@
 name: ci
-
-on:
-  pull_request:
-    branches: [main]
-
+on: [push]
+  # pull_request:
+  #   branches: [main]
 jobs:
   tests:
     name: Tests
@@ -15,6 +13,19 @@ jobs:
 
       - name: Set up Go
         uses: actions/setup-go@v5
-        
+
       - name: Test
         run: go test ./... -cover
+  style:
+    name: Style
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+
+      - name: use fmt to check
+        run: test -z $(go fmt ./...)
